@@ -1,0 +1,19 @@
+{
+    "name": "Quest",
+    "rootNamespace": "",
+    "references": [
+        "UniTask",
+        "MessagePipe.VContainer",
+        "VContainer",
+        "MessagePipe"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

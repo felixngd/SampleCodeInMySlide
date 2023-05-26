@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "com.cysharp.messagepipe": "https://github.com/Cysharp/MessagePipe.git?path=src/MessagePipe.Unity/Assets/Plugins/MessagePipe",
+    "com.cysharp.messagepipe.vcontainer": "https://github.com/Cysharp/MessagePipe.git?path=src/MessagePipe.Unity/Assets/Plugins/MessagePipe.VContainer",
+    "com.cysharp.unitask": "2.3.3",
     "com.unity.collab-proxy": "1.17.7",
     "com.unity.feature.2d": "1.0.0",
     "com.unity.ide.rider": "3.0.16",
@@ -41,6 +44,18 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
-  }
+    "com.unity.modules.xr": "1.0.0",
+    "jp.hadashikick.vcontainer": "1.13.2"
+  },
+  "scopedRegistries": [
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.cysharp.unitask",
+        "com.openupm",
+        "jp.hadashikick.vcontainer"
+      ]
+    }
+  ]
 }
