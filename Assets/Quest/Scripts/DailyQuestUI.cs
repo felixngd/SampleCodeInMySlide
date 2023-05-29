@@ -9,7 +9,7 @@ public class DailyQuestUI : MonoBehaviour
     public GameObject questPrefab;
     public Transform questContainer;
     [Inject]
-    private DailyQuestManager _dailyQuestManager;
+    public DailyQuestManager _dailyQuestManager;
 
     private void Start()
     {

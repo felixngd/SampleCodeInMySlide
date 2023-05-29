@@ -3,9 +3,9 @@ using VContainer;
 
 public class QuestConfigurationLoader : MonoBehaviour
 {
-    [Inject] private QuestConfiguration _questConfiguration;
-    [Inject] private DailyQuestManager _dailyQuestManager;
-    [Inject] private QuestEventPublisher _questEventPublisher;
+    [Inject] public QuestConfiguration _questConfiguration;
+    [Inject] public DailyQuestManager _dailyQuestManager;
+    [Inject] public QuestEventPublisher _questEventPublisher;
 
     private void Start()
     {
