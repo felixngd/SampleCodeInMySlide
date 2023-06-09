@@ -4,40 +4,43 @@ using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
 
-public class DailyQuestUI : MonoBehaviour
+namespace SampleCode.Quest
 {
-    public GameObject questPrefab;
-    public Transform questContainer;
-    [Inject]
-    public DailyQuestManager _dailyQuestManager;
-
-    private void Start()
+    public class DailyQuestUI : MonoBehaviour
     {
-        // Add some quests for demonstration purposes
-        _dailyQuestManager.AddQuest(new DailyQuest("Quest 1", "Complete 5 tasks"));
-        _dailyQuestManager.AddQuest(new TimedDailyQuest("Quest 2", "Collect 10 items", DateTime.Now.AddHours(2)));
+        public GameObject questPrefab;
+        public Transform questContainer;
+        [Inject]
+        public DailyQuestManager _dailyQuestManager;
 
-        // Display the quests in the UI
-        DisplayQuests();
-    }
-
-    private void DisplayQuests()
-    {
-        // Clear any existing quests in the UI
-        foreach (Transform child in questContainer)
+        private void Start()
         {
-            Destroy(child.gameObject);
+            // Add some quests for demonstration purposes
+            _dailyQuestManager.AddQuest(new DailyQuest("Quest 1", "Complete 5 tasks"));
+            _dailyQuestManager.AddQuest(new TimedDailyQuest("Quest 2", "Collect 10 items", DateTime.Now.AddHours(2)));
+
+            // Display the quests in the UI
+            DisplayQuests();
         }
 
-        // Get all quests from the DailyQuestManager
-        IEnumerable<IDailyQuest> quests = _dailyQuestManager.GetAllQuests();
-
-        // Instantiate and display each quest in the UI
-        foreach (IDailyQuest quest in quests)
+        private void DisplayQuests()
         {
-            GameObject questInstance = Instantiate(questPrefab, questContainer);
-            questInstance.transform.Find("QuestName").GetComponent<Text>().text = quest.Name;
-            questInstance.transform.Find("QuestDescription").GetComponent<Text>().text = quest.Description;
+            // Clear any existing quests in the UI
+            foreach (Transform child in questContainer)
+            {
+                Destroy(child.gameObject);
+            }
+
+            // Get all quests from the DailyQuestManager
+            IEnumerable<IDailyQuest> quests = _dailyQuestManager.GetAllQuests();
+
+            // Instantiate and display each quest in the UI
+            foreach (IDailyQuest quest in quests)
+            {
+                GameObject questInstance = Instantiate(questPrefab, questContainer);
+                questInstance.transform.Find("QuestName").GetComponent<Text>().text = quest.Name;
+                questInstance.transform.Find("QuestDescription").GetComponent<Text>().text = quest.Description;
+            }
         }
     }
 }

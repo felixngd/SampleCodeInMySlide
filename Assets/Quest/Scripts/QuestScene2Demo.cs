@@ -3,26 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
-public class QuestScene2Demo : MonoBehaviour
+
+namespace SampleCode.Quest
 {
-    public Button button;
-    [Inject] public QuestEventPublisher _questEventPublisher;
-    private void Start()
+    public class QuestScene2Demo : MonoBehaviour
     {
-        button.onClick.AddListener(() =>
+        public Button button;
+        [Inject] public QuestEventPublisher _questEventPublisher;
+
+        private void Start()
         {
-            var q = new ProgressiveDailyQuest("01", "02", 2, _questEventPublisher);
-            q.IncrementProgress();
-            q.Complete();
-        });
-    }
-    
-    private void OnGUI()
-    {
-        //load scene Scene_1_Quest
-        if (GUILayout.Button("Load Scene_1_Quest"))
+            button.onClick.AddListener(() =>
+            {
+                var q = new ProgressiveDailyQuest("01", "02", 2, _questEventPublisher);
+                q.IncrementProgress();
+                q.Complete();
+            });
+        }
+
+        private void OnGUI()
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Scene_1_Quest");
+            //load scene Scene_1_Quest
+            if (GUILayout.Button("Load Scene_1_Quest"))
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Scene_1_Quest");
+            }
         }
     }
 }

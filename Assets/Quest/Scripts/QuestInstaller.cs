@@ -1,32 +1,37 @@
+using System;
 using MessagePipe;
 using UnityEngine;
 using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 
-public class QuestInstaller : LifetimeScope
+namespace SampleCode.Quest
 {
-    [FormerlySerializedAs("gameSetting")] public QuestConfiguration questConfiguration;
-    protected override void Configure(IContainerBuilder builder)
+    public class QuestInstaller : LifetimeScope
     {
-        var options = builder.RegisterMessagePipe();
-        builder.RegisterMessageBroker<ProgressiveQuestTopic>(options);
-        //
-        builder.Register<IDailyQuestRepository, DailyQuestRepository>(Lifetime.Singleton);
-        builder.Register<DailyQuestManager>(Lifetime.Singleton);
-        builder.Register<QuestEventPublisher>(Lifetime.Singleton);
-        
+        [FormerlySerializedAs("gameSetting")] public QuestConfiguration questConfiguration;
+        protected override void Configure(IContainerBuilder builder)
+        {
+            // var options = builder.RegisterMessagePipe();
+            // builder.RegisterMessageBroker<ProgressiveQuestTopic>(options);
+            //
+            //
+            builder.Register<IDailyQuestRepository, DailyQuestRepository>(Lifetime.Singleton);
 
-        builder.RegisterInstance<QuestConfiguration>(questConfiguration);
-        
-        builder.RegisterEntryPoint<QuestConfigurationLoader>(Lifetime.Singleton).AsSelf();
-        builder.RegisterEntryPoint<DailyQuestUI>(Lifetime.Singleton).AsSelf();
-    }
+            builder.Register<DailyQuestManager>(Lifetime.Singleton);
+            builder.Register<QuestEventPublisher>(Lifetime.Singleton);
 
-    private void Start()
-    {
-        Debug.Log("QuestInstaller Start in scene: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-        Debug.Log("QuestInstaller Start in scene: " + questConfiguration.localQuestData[0].name + "requiredProgress: " + questConfiguration.localQuestData[0].requiredProgress);
-        questConfiguration.localQuestData[0].requiredProgress = UnityEngine.Random.Range(1, 10);
+            builder.RegisterInstance<QuestConfiguration>(questConfiguration);
+
+            builder.RegisterEntryPoint<QuestConfigurationLoader>(Lifetime.Singleton).AsSelf();
+            builder.RegisterEntryPoint<DailyQuestUI>(Lifetime.Singleton).AsSelf();
+
+            
+        }
+
+        private void Start()
+        {
+            DontDestroyOnLoad(this);
+        }
     }
 }
