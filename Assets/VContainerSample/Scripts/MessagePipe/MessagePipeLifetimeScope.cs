@@ -9,8 +9,9 @@ namespace VContainerSample.Scripts.MessagePipe
         protected override void Configure(IContainerBuilder builder)
         {
             var messagePipeOption = builder.RegisterMessagePipe();
-            messagePipeOption.AddGlobalRequestHandlerFilter<PingPongRequestHandlerFilter>();
+            //messagePipeOption.AddGlobalRequestHandlerFilter<PingPongRequestHandlerFilter>();
             builder.RegisterRequestHandlerFilter<PingPongRequestHandlerFilter>();
+            builder.RegisterMessageHandlerFilter<PingPongMessageHandlerFilter>();
 
             builder.RegisterRequestHandler<Ping, Pong, PingPongRequestHandler>(messagePipeOption);
             builder.RegisterRequestHandler<Ping, Pong, PingPongRequestHandler2>(messagePipeOption);

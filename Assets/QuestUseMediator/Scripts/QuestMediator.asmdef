@@ -1,0 +1,19 @@
+{
+    "name": "QuestMediator",
+    "rootNamespace": "Sample.QuestMediator",
+    "references": [
+        "MessagePipe.VContainer",
+        "VContainer",
+        "UniTask",
+        "MessagePipe"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

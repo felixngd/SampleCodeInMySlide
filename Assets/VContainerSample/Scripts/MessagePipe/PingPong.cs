@@ -59,7 +59,7 @@ namespace VContainerSample.Scripts.MessagePipe
         
         public void Foo()
         {
-            Random.InitState(34);
+            //Random.InitState(34);
             var ping = new Ping(Random.Range(0, 100));
             Debug.Log($"Send Ping value {ping.Value} in ${nameof(FooController)}");
             _handler.Invoke(ping);
@@ -93,6 +93,7 @@ namespace VContainerSample.Scripts.MessagePipe
         }
     }
     
+    [RequestHandlerFilter(typeof(PingPongRequestHandlerFilter), Order = 1)]
     public class PingPongRequestHandler3 : IRequestHandler<Ping, Pong>
     {
         public Pong Invoke(Ping request)
@@ -114,7 +115,7 @@ namespace VContainerSample.Scripts.MessagePipe
         
         public void Bar()
         {
-            Random.InitState(44);
+            //Random.InitState(44);
             var ping = new Ping(Random.Range(0, 100));
             Debug.Log($"Send Ping value {ping.Value} in ${nameof(BarController)}");
             _handler.InvokeAll(ping);
@@ -140,7 +141,7 @@ namespace VContainerSample.Scripts.MessagePipe
         public override void Handle(Ping message, Action<Ping> next)
         {
             //ignore request has odd value
-            if (message.Value % 2 == 1)
+            if (message.Value % 2 == 0)
             {
                 Debug.Log($"Ignore Ping value {message.Value} in ${nameof(PingPongMessageHandlerFilter)}");
                 return;
