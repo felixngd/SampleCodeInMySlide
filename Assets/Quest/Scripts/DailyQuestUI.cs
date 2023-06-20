@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MessagePipe;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
@@ -12,7 +13,6 @@ namespace SampleCode.Quest
         public Transform questContainer;
         [Inject]
         public DailyQuestManager _dailyQuestManager;
-
         private void Start()
         {
             // Add some quests for demonstration purposes
@@ -21,6 +21,7 @@ namespace SampleCode.Quest
 
             // Display the quests in the UI
             DisplayQuests();
+
         }
 
         private void DisplayQuests()
